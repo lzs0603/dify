@@ -372,9 +372,9 @@ services:
     # uncomment to expose dify-web port to host
     # ports:
     #   - "3000:3000"
-    # volumes:
+    volumes:
       # - ../web/.next:/app/web/.next
-      # - /home/zishuoli/MentalAgent/dify/web/public/logo:/app/web/public/logo
+      - /home/zishuoli/MentalAgent/dify/web/public/logo:/app/web/public/logo
 
   # The postgres database.
   db:
@@ -525,7 +525,7 @@ services:
       - api
       - web
     ports:
-      - "80:80"
+      - "79:80"
       #- "443:443"
 networks:
   # create a network between sandbox, api and ssrf_proxy, and can not access outside.
