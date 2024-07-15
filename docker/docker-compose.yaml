@@ -180,7 +180,7 @@ services:
       CODE_MAX_STRING_LENGTH: 80000
       TEMPLATE_TRANSFORM_MAX_LENGTH: 80000
       CODE_MAX_STRING_ARRAY_LENGTH: 30
-      CODE_MAX_OBJECT_ARRAY_LENGTH: 30
+      CODE_MAX_OBJECT_ARRAY_LENGTH: 100
       CODE_MAX_NUMBER_ARRAY_LENGTH: 1000
       # SSRF Proxy server
       SSRF_PROXY_HTTP_URL: 'http://ssrf_proxy:3128'
@@ -193,6 +193,12 @@ services:
     volumes:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage
+      - ../api/controllers/web:/app/api/controllers/web
+      - ../api/controllers/service_api:/app/api/controllers/service_api
+      - /home/zishuoli/MentalAgent/dify/api/core/model_runtime/model_providers/tongyi/llm:/app/api/core/model_runtime/model_providers/tongyi/llm
+      - /home/zishuoli/MentalAgent/dify/api/core/workflow/nodes/code:/app/api/core/workflow/nodes/code
+        #- ../api/core/model_runtime:/app/api/core/model_runtime
+        #- ../api/core/llm_generator:/app/api/core/llm_generator
     # uncomment to expose dify-api port to host
     # ports:
     #   - "5001:5001"
@@ -338,6 +344,12 @@ services:
     volumes:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage
+      - ../api/controllers/web:/app/api/controllers/web
+      - ../api/controllers/service_api:/app/api/controllers/service_api
+      - /home/zishuoli/MentalAgent/dify/api/core/model_runtime/model_providers/tongyi/llm:/app/api/core/model_runtime/model_providers/tongyi/llm
+      - /home/zishuoli/MentalAgent/dify/api/core/workflow/nodes/code:/app/api/core/workflow/nodes/code
+        #- ../api/core/model_runtime:/app/api/core/model_runtime
+        #- ../api/core/llm_generator:/app/api/core/llm_generator
     networks:
       - ssrf_proxy_network
       - default
@@ -360,6 +372,9 @@ services:
     # uncomment to expose dify-web port to host
     # ports:
     #   - "3000:3000"
+    # volumes:
+      # - ../web/.next:/app/web/.next
+      # - /home/zishuoli/MentalAgent/dify/web/public/logo:/app/web/public/logo
 
   # The postgres database.
   db:
