@@ -7,13 +7,13 @@ from urllib.parse import urlencode
 
 import httpx
 
-from core.file.file_manager import download
 from core.helper import ssrf_proxy
 from core.tools.__base.tool import Tool
 from core.tools.__base.tool_runtime import ToolRuntime
 from core.tools.entities.tool_bundle import ApiToolBundle
 from core.tools.entities.tool_entities import ToolEntity, ToolInvokeMessage, ToolProviderType
 from core.tools.errors import ToolInvokeError, ToolParameterValidationError, ToolProviderCredentialValidationError
+from graphon.file.file_manager import download
 
 API_TOOL_DEFAULT_TIMEOUT = (
     int(getenv("API_TOOL_DEFAULT_CONNECT_TIMEOUT", "10")),
@@ -395,11 +395,13 @@ class ApiTool(Tool):
         parsed_response = self.validate_and_parse_response(response)
 
         # assemble invoke message based on response type
-        if parsed_response.is_json and isinstance(parsed_response.content, dict):
-            yield self.create_json_message(parsed_response.content)
+        if parsed_response.is_json:
+            if isinstance(parsed_response.content, dict):
+                yield self.create_json_message(parsed_response.content)
 
-            # FIXES: https://github.com/langgenius/dify/pull/23456#issuecomment-3182413088
-            # We need never break the original flows
+            # The yield below must be preserved to keep backward compatibility.
+            #
+            # ref: https://github.com/langgenius/dify/pull/23456#issuecomment-3182413088
             yield self.create_text_message(response.text)
         else:
             # Convert to string if needed and create text message
