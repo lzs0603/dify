@@ -16,6 +16,10 @@ export type TagBasePayload = {
   type: TagType
 }
 
+export type TagUpdateRequestPayload = {
+  name: string
+}
+
 export type TagType = 'app' | 'knowledge'
 
 export type GetTagsData = {
@@ -42,9 +46,7 @@ export type PostTagsData = {
 }
 
 export type PostTagsResponses = {
-  200: {
-    [key: string]: unknown
-  }
+  200: TagResponse
 }
 
 export type PostTagsResponse = PostTagsResponses[keyof PostTagsResponses]
@@ -59,15 +61,15 @@ export type DeleteTagsByTagIdData = {
 }
 
 export type DeleteTagsByTagIdResponses = {
-  200: {
-    [key: string]: unknown
+  204: {
+    [key: string]: never
   }
 }
 
 export type DeleteTagsByTagIdResponse = DeleteTagsByTagIdResponses[keyof DeleteTagsByTagIdResponses]
 
 export type PatchTagsByTagIdData = {
-  body: TagBasePayload
+  body: TagUpdateRequestPayload
   path: {
     tag_id: string
   }
@@ -76,9 +78,7 @@ export type PatchTagsByTagIdData = {
 }
 
 export type PatchTagsByTagIdResponses = {
-  200: {
-    [key: string]: unknown
-  }
+  200: TagResponse
 }
 
 export type PatchTagsByTagIdResponse = PatchTagsByTagIdResponses[keyof PatchTagsByTagIdResponses]

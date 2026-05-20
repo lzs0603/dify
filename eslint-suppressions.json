@@ -789,14 +789,6 @@
       "count": 10
     }
   },
-  "web/app/components/base/checkbox/index.stories.tsx": {
-    "no-console": {
-      "count": 1
-    },
-    "ts/no-explicit-any": {
-      "count": 1
-    }
-  },
   "web/app/components/base/chip/index.tsx": {
     "ts/no-explicit-any": {
       "count": 3
@@ -1029,14 +1021,6 @@
   "web/app/components/base/form/utils/secret-input/index.ts": {
     "ts/no-explicit-any": {
       "count": 2
-    }
-  },
-  "web/app/components/base/ga/index.tsx": {
-    "erasable-syntax-only/enums": {
-      "count": 1
-    },
-    "react-refresh/only-export-components": {
-      "count": 1
     }
   },
   "web/app/components/base/icons/src/public/avatar/index.ts": {
@@ -1994,9 +1978,6 @@
     },
     "react-refresh/only-export-components": {
       "count": 1
-    },
-    "react/use-memo": {
-      "count": 1
     }
   },
   "web/app/components/datasets/documents/detail/completed/segment-list.tsx": {
@@ -2425,7 +2406,7 @@
   },
   "web/app/components/plugins/install-plugin/install-from-github/index.tsx": {
     "ts/no-explicit-any": {
-      "count": 3
+      "count": 2
     }
   },
   "web/app/components/plugins/install-plugin/install-from-github/steps/selectPackage.tsx": {
@@ -4648,11 +4629,6 @@
   "web/service/base.ts": {
     "ts/no-explicit-any": {
       "count": 3
-    }
-  },
-  "web/service/client.spec.ts": {
-    "next/no-assign-module-variable": {
-      "count": 1
     }
   },
   "web/service/common.ts": {

@@ -13,6 +13,13 @@ export const zTagResponse = z.object({
 })
 
 /**
+ * TagUpdateRequestPayload
+ */
+export const zTagUpdateRequestPayload = z.object({
+  name: z.string().min(1).max(50),
+})
+
+/**
  * TagType
  *
  * Tag type
@@ -42,18 +49,18 @@ export const zPostTagsBody = zTagBasePayload
 /**
  * Success
  */
-export const zPostTagsResponse = z.record(z.string(), z.unknown())
+export const zPostTagsResponse = zTagResponse
 
 export const zDeleteTagsByTagIdPath = z.object({
   tag_id: z.string(),
 })
 
 /**
- * Success
+ * Tag deleted successfully
  */
-export const zDeleteTagsByTagIdResponse = z.record(z.string(), z.unknown())
+export const zDeleteTagsByTagIdResponse = z.record(z.string(), z.never())
 
-export const zPatchTagsByTagIdBody = zTagBasePayload
+export const zPatchTagsByTagIdBody = zTagUpdateRequestPayload
 
 export const zPatchTagsByTagIdPath = z.object({
   tag_id: z.string(),
@@ -62,4 +69,4 @@ export const zPatchTagsByTagIdPath = z.object({
 /**
  * Success
  */
-export const zPatchTagsByTagIdResponse = z.record(z.string(), z.unknown())
+export const zPatchTagsByTagIdResponse = zTagResponse
